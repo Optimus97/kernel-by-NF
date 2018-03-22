@@ -15,18 +15,18 @@ before_install:
 
   - sudo apt-get update -qq
   
-  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 ~/toolchain/
+  - git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 ~/toolchain/
 
 #######################################################################################
 
 
 script:  
-  - export CROSS_COMPILE=~/toolchain/bin/aarch64-linux-android-
+  - export CROSS_COMPILE=~/toolchain/bin/arm-eabi-
   - export KBUILD_BUILD_USER="yashpaljoshi"
   - export KBUILD_BUILD_HOST="Shivom007"
-  - export ARCH=arm64
-  - make  msm_N939St64_defconfig
+  - export ARCH=arm
+  - make  msm_N939St_defconfig
   - make -j2
 
 after_success:
-  - curl --upload-file arch/arm64/boot/Image https://transfer.sh/lyf_Nkernel
+  - curl --upload-file arch/arm64/boot/Image https://transfer.sh/lyf_Nakernel
